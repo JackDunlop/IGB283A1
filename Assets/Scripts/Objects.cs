@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class GameObjectSpeed : MonoBehaviour
 {
@@ -14,19 +15,18 @@ public class GameObjectSpeed : MonoBehaviour
 public class Objects : MonoBehaviour
 {
     public Material firstDogMaterial;
-    private List<GameObject> firstDogGameObjects = new List<GameObject>();
+    public GameObject firstDogGameObject1;
+    public GameObject firstDogGameObject2;
 
     public Material pointOneMaterial;
-    private List<GameObject> pointOneGameObjects = new List<GameObject>();
+    public GameObject pointOneGameObject1;
+    public GameObject pointOneGameObject2;
 
     public Material pointTwoMaterial;
-    private List<GameObject> pointTwoGameObjects = new List<GameObject>();
+    public GameObject pointTwoGameObject1;
+    public GameObject pointTwoGameObject2;
 
-
-    public float rotateSpeedOne = 500f;
-    public float rotateSpeedTwo = 250;
-
-    void CreateAndSetUpPointOne(string name)
+    void CreateAndSetUpPointOne(GameObject gameObject, float initialX, float initialY)
     {
         IGB283Vector3[] pointOneVertices = new IGB283Vector3[]
         {
@@ -36,13 +36,15 @@ public class Objects : MonoBehaviour
             new IGB283Vector3(5,25,0),
         };
 
-        GameObject pointOne = CreateObjects(name, pointOneMaterial, pointOneVertices, new int[] { 3, 2, 1, 2, 0, 1 });
-        SetInitialPosition(pointOne, 70, 20);
-        pointOneGameObjects.Add(pointOne);
+        
+        CreateObjects(gameObject, pointOneMaterial, pointOneVertices, new int[] { 3, 2, 1, 2, 0, 1 });
+        SetInitialPosition(gameObject, initialX, initialY);
+
+
 
     }
 
-    void CreateAndSetUpPointTwo(string name)
+    void CreateAndSetUpPointTwo(GameObject gameObject, float initialX, float initialY)
     {
         IGB283Vector3[] pointTwoVertices = new IGB283Vector3[]
         {
@@ -52,12 +54,12 @@ public class Objects : MonoBehaviour
             new IGB283Vector3(-5,25,0),
         };
 
-        GameObject pointTwo = CreateObjects(name, pointTwoMaterial, pointTwoVertices, new int[] { 3, 2, 1, 2, 0, 1 });
-        SetInitialPosition(pointTwo, -70, 20);
-        pointTwoGameObjects.Add(pointTwo); 
+        CreateObjects(gameObject, pointTwoMaterial, pointTwoVertices, new int[] { 3, 2, 1, 2, 0, 1 });
+        SetInitialPosition(gameObject, initialX, initialY);
+
     }
 
-    void CreateAndSetUpDogObject(string name)
+    void CreateAndSetUpDogObject(GameObject gameObject,float rotationSpeed, float initialX, float initialY)
     {
         IGB283Vector3[] firstDogVertices = new IGB283Vector3[] {
                 new IGB283Vector3(0,0,0),
@@ -100,8 +102,7 @@ public class Objects : MonoBehaviour
                 new IGB283Vector3(7,10.25f,0)
                  };
 
-
-        GameObject firstDog = CreateObjects(name, firstDogMaterial, firstDogVertices, new int[] {
+        CreateObjects(gameObject, firstDogMaterial, firstDogVertices, new int[] {
                 0,1,2,
                 0,1,8,
                 0,9,8,
@@ -142,18 +143,12 @@ public class Objects : MonoBehaviour
                 33,32,30,
                 30,32,29
             });
-        GameObjectSpeed speedDog = firstDog.AddComponent<GameObjectSpeed>();
-        speedDog.rotationSpeed = rotateSpeedOne; 
-        firstDogGameObjects.Add(firstDog);
+        GameObjectSpeed speedDog = gameObject.AddComponent<GameObjectSpeed>();
+        speedDog.rotationSpeed = rotationSpeed;
+        SetInitialPosition(gameObject, initialX, initialY);
 
-        foreach (GameObject go in firstDogGameObjects)
-        {
-            SetInitialPosition(go, 0, 20);
-        }
-        foreach (GameObject go in firstDogGameObjects)
-        {
-            go.transform.parent = this.transform;
-        }
+
+
     }
 
 
@@ -161,18 +156,30 @@ public class Objects : MonoBehaviour
     void Start()
     {
 
-        switch (gameObject.name)
-        {
-            case "pointOne1":
-                CreateAndSetUpPointOne(gameObject.name);
-                break;
-            case "pointTwo1":
-                CreateAndSetUpPointTwo(gameObject.name);
-                break;
-            case "firstDog1":
-                CreateAndSetUpDogObject(gameObject.name);
-                break;
 
+        if (firstDogGameObject1 != null)
+        {
+            CreateAndSetUpDogObject(firstDogGameObject1, 500f, 0f, 20f);
+        }
+        if (firstDogGameObject2 != null)
+        {
+            CreateAndSetUpDogObject(firstDogGameObject2, 250f, 0f, 20f);
+        }
+        if (pointOneGameObject1 != null)
+        {
+            CreateAndSetUpPointOne(pointOneGameObject1, 70f, 20f);
+        }
+        if (pointOneGameObject2 != null)
+        {
+            CreateAndSetUpPointOne(pointOneGameObject2, -70f, -20f);
+        }
+        if (pointTwoGameObject1 != null)
+        {
+            CreateAndSetUpPointTwo(pointTwoGameObject1, -70f, 20f);
+        }
+        if (pointTwoGameObject2 != null)
+        {
+            CreateAndSetUpPointTwo(pointTwoGameObject2, 70f, -20f);
         }
 
     }
@@ -189,9 +196,10 @@ public class Objects : MonoBehaviour
             Debug.LogError("The GameObject is null.");
         }
     }
-    GameObject CreateObjects(string name, Material material, IGB283Vector3[] vertices, int[] triangles)
+    void CreateObjects(GameObject gameObject, Material material, IGB283Vector3[] vertices, int[] triangles)
     {
-        GameObject gameObject = new GameObject(name);
+
+
         gameObject.AddComponent<MeshFilter>();
         gameObject.AddComponent<MeshRenderer>();
 
@@ -202,7 +210,7 @@ public class Objects : MonoBehaviour
         objectMesh.vertices = vertices.Select(v => (Vector3)v).ToArray();
         objectMesh.triangles = triangles;
         int triangleLength = triangles.Length;
-        switch (name)
+        switch (gameObject.name)
         {
             case "firstDog1":
                 Color[] firstDogColours = new Color[vertices.Length]; 
@@ -231,29 +239,64 @@ public class Objects : MonoBehaviour
                 }
                 objectMesh.colors = pointTwoColours;
                 break;
+            case "firstDog2":
+                Color[] firstDogColours2 = new Color[vertices.Length];
+                Color firstDogColourValue2 = new Color(0.8f, 0.3f, 0.3f, 1.0f);
+                for (int i = 0; i < firstDogColours2.Length; i++)
+                {
+                    firstDogColours2[i] = firstDogColourValue2;
+                }
+                objectMesh.colors = firstDogColours2;
+                break;
+            case "pointOne2":
+                Color[] pointOneColours2 = new Color[vertices.Length];
+                Color pointOneColourValue2 = new Color(0.8f, 0.3f, 0.3f, 1.0f);
+                for (int i = 0; i < pointOneColours2.Length; i++)
+                {
+                    pointOneColours2[i] = pointOneColourValue2;
+                }
+                objectMesh.colors = pointOneColours2;
+                break;
+            case "pointTwo2":
+                Color[] pointTwoColours2 = new Color[vertices.Length];
+                Color pointTwoColourValue2 = new Color(0.8f, 0.3f, 0.3f, 1.0f);
+                for (int i = 0; i < pointTwoColours2.Length; i++)
+                {
+                    pointTwoColours2[i] = pointTwoColourValue2;
+                }
+                objectMesh.colors = pointTwoColours2;
+                break;
         }
 
 
         objectMesh.RecalculateNormals();
         objectMesh.RecalculateBounds();
-
-        return gameObject;
     }
 
     void Update()
     {
-        foreach (GameObject firstDog in firstDogGameObjects)
+
+        if (firstDogGameObject1 != null)
         {
-            if (firstDog != null)
-            {
-                GameObjectSpeed speedComponent = firstDog.GetComponent<GameObjectSpeed>();
-                if (speedComponent != null)
-                {
-                    IGB283Transform.RotateGameObject(firstDog, speedComponent.rotationSpeed * Time.deltaTime);
-                }
-            }
+            ObjectRotater(firstDogGameObject1);
         }
+        if (firstDogGameObject2 != null)
+        {
+            ObjectRotater(firstDogGameObject2);
+        }
+
+
     }
 
-
+    void ObjectRotater(GameObject gameObject)
+    {
+        GameObjectSpeed speedComponent = gameObject.GetComponent<GameObjectSpeed>();
+        if (speedComponent != null)
+        {
+            IGB283Transform.RotateGameObject(gameObject, speedComponent.rotationSpeed * Time.deltaTime);
+        }
+    }
 }
+
+
+

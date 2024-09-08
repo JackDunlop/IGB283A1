@@ -9,48 +9,78 @@ public class Movement : MonoBehaviour
 
 
 
-    private GameObject firstDogGameObject;
+    private GameObject firstDogGameObject1;
 
-    private GameObject pointOneGameObject;
-    private GameObject pointTwoGameObject;
+    private GameObject pointOneGameObject1;
+    private GameObject pointTwoGameObject1;
 
-    private IGB283Vector3 pointOnePosition;
-    private IGB283Vector3 pointTwoPosition;
+    private IGB283Vector3 pointOnePosition1;
+    private IGB283Vector3 pointTwoPosition1;
 
-    public float translationSpeed = 100f;
+
+
+    private GameObject firstDogGameObject2;
+
+    private GameObject pointOneGameObject2;
+    private GameObject pointTwoGameObject2;
+
+    private IGB283Vector3 pointOnePosition2;
+    private IGB283Vector3 pointTwoPosition2;
+
+    public float translationSpeed = 5f;
     private float direction = 1f;
-    private IGB283Vector3 currentTranslation;
+    private float direction2 = -1f;
 
     void Start()
     {
 
-        firstDogGameObject = GameObject.Find("firstDog1");
-        pointOneGameObject = GameObject.Find("pointOne1");
-        pointTwoGameObject = GameObject.Find("pointTwo1");
-
-        SetInitialPosition(pointOneGameObject, 70, 20);
-        SetInitialPosition(pointTwoGameObject, -70, 20);
-
-        pointOnePosition = pointOneGameObject.transform.position;
-        pointTwoPosition = pointTwoGameObject.transform.position;
+        firstDogGameObject1 = GameObject.Find("firstDog1");
+        pointOneGameObject1 = GameObject.Find("pointOne1");
+        pointTwoGameObject1 = GameObject.Find("pointTwo1");
 
 
-      
+        firstDogGameObject2 = GameObject.Find("firstDog2");
+        pointOneGameObject2 = GameObject.Find("pointOne2");
+        pointTwoGameObject2 = GameObject.Find("pointTwo2");
+
+     
+
+
 
     }
 
     void Update()
     {
-        IGB283Vector3 targetPosition = (IGB283Vector3)(direction > 0 ? pointTwoPosition : pointOnePosition);
-        IGB283Vector3 directionVector = (targetPosition - firstDogGameObject.transform.position).normalized;
 
-        firstDogGameObject.transform.position += directionVector * translationSpeed * Time.deltaTime;
+        pointOnePosition1 = pointOneGameObject1.transform.position;
+        pointTwoPosition1 = pointTwoGameObject1.transform.position;
 
-        if (IGB283Vector3.Distance(firstDogGameObject.transform.position, targetPosition) < 0.1f)
+
+        pointOnePosition2 = pointOneGameObject2.transform.position;
+        pointTwoPosition2 = pointTwoGameObject2.transform.position;
+
+        IGB283Vector3 targetPosition1 = (IGB283Vector3)(direction > 0 ? pointTwoPosition1 : pointOnePosition1);
+        IGB283Vector3 directionVector1 = (targetPosition1 - firstDogGameObject1.transform.position).normalized;
+
+        firstDogGameObject1.transform.position += directionVector1 * translationSpeed * Time.deltaTime;
+
+        if (IGB283Vector3.Distance(firstDogGameObject1.transform.position, targetPosition1) < 0.5f)
         {
             direction *= -1;
         }
+
+     
+        IGB283Vector3 targetPosition2 = (IGB283Vector3)(direction2 > 0 ? pointOnePosition2: pointTwoPosition2);
+        IGB283Vector3 directionVector2 = (targetPosition2 - firstDogGameObject2.transform.position).normalized;
+
+        firstDogGameObject2.transform.position += directionVector2 * translationSpeed * Time.deltaTime;
+
+        if (IGB283Vector3.Distance(firstDogGameObject2.transform.position, targetPosition2) < 1f)
+        {
+            direction2 *= -1;
+        }
     }
+
 
 
     void SetInitialPosition(GameObject gameObject, float x, float y)

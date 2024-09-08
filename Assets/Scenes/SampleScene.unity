@@ -152,10 +152,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   firstDogMaterial: {fileID: 0}
+  firstDogGameObject1: {fileID: 0}
+  firstDogGameObject2: {fileID: 0}
   pointOneMaterial: {fileID: 0}
+  pointOneGameObject1: {fileID: 0}
+  pointOneGameObject2: {fileID: 0}
   pointTwoMaterial: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  rotateSpeedOne: 500
-  rotateSpeedTwo: 250
+  pointTwoGameObject1: {fileID: 410344041}
+  pointTwoGameObject2: {fileID: 0}
 --- !u!4 &410344043
 Transform:
   m_ObjectHideFlags: 0
@@ -164,7 +168,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 410344041}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -12.448261, y: 3.9024878, z: -10.691779}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -263,6 +267,73 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &601631994
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 601631995}
+  - component: {fileID: 601631996}
+  - component: {fileID: 601631997}
+  m_Layer: 0
+  m_Name: firstDog2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &601631995
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 601631994}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -14.760772, y: 14.771599, z: -10.640587}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &601631996
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 601631994}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fb8895c53d732846aa3f7d764edcc60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  firstDogMaterial: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  firstDogGameObject1: {fileID: 0}
+  firstDogGameObject2: {fileID: 601631994}
+  pointOneMaterial: {fileID: 0}
+  pointOneGameObject1: {fileID: 0}
+  pointOneGameObject2: {fileID: 0}
+  pointTwoMaterial: {fileID: 0}
+  pointTwoGameObject1: {fileID: 0}
+  pointTwoGameObject2: {fileID: 0}
+--- !u!114 &601631997
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 601631994}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f3d4c146cb7b42428e519e0cc7da172, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  translationSpeed: 100
 --- !u!1 &1164548461
 GameObject:
   m_ObjectHideFlags: 0
@@ -294,10 +365,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   firstDogMaterial: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  firstDogGameObject1: {fileID: 1164548461}
+  firstDogGameObject2: {fileID: 0}
   pointOneMaterial: {fileID: 0}
+  pointOneGameObject1: {fileID: 0}
+  pointOneGameObject2: {fileID: 0}
   pointTwoMaterial: {fileID: 0}
-  rotateSpeedOne: 500
-  rotateSpeedTwo: 250
+  pointTwoGameObject1: {fileID: 0}
+  pointTwoGameObject2: {fileID: 0}
 --- !u!4 &1164548463
 Transform:
   m_ObjectHideFlags: 0
@@ -326,6 +401,59 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   translationSpeed: 100
+--- !u!1 &1387187210
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1387187211}
+  - component: {fileID: 1387187212}
+  m_Layer: 0
+  m_Name: pointTwo2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1387187211
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1387187210}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -14.760772, y: 14.771599, z: -10.640587}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1387187212
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1387187210}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fb8895c53d732846aa3f7d764edcc60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  firstDogMaterial: {fileID: 0}
+  firstDogGameObject1: {fileID: 0}
+  firstDogGameObject2: {fileID: 0}
+  pointOneMaterial: {fileID: 0}
+  pointOneGameObject1: {fileID: 0}
+  pointOneGameObject2: {fileID: 0}
+  pointTwoMaterial: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  pointTwoGameObject1: {fileID: 0}
+  pointTwoGameObject2: {fileID: 1387187210}
 --- !u!1 &1408256434
 GameObject:
   m_ObjectHideFlags: 0
@@ -351,7 +479,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1408256434}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 6.5354967, y: 8.966963, z: -0.74310744}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -371,10 +499,67 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   firstDogMaterial: {fileID: 0}
+  firstDogGameObject1: {fileID: 0}
+  firstDogGameObject2: {fileID: 0}
   pointOneMaterial: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  pointOneGameObject1: {fileID: 1408256434}
+  pointOneGameObject2: {fileID: 0}
   pointTwoMaterial: {fileID: 0}
-  rotateSpeedOne: 500
-  rotateSpeedTwo: 250
+  pointTwoGameObject1: {fileID: 0}
+  pointTwoGameObject2: {fileID: 0}
+--- !u!1 &2084878089
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2084878090}
+  - component: {fileID: 2084878091}
+  m_Layer: 0
+  m_Name: pointOne2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2084878090
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2084878089}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -14.760772, y: 14.771599, z: -10.640587}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2084878091
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2084878089}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fb8895c53d732846aa3f7d764edcc60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  firstDogMaterial: {fileID: 0}
+  firstDogGameObject1: {fileID: 0}
+  firstDogGameObject2: {fileID: 0}
+  pointOneMaterial: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  pointOneGameObject1: {fileID: 0}
+  pointOneGameObject2: {fileID: 2084878089}
+  pointTwoMaterial: {fileID: 0}
+  pointTwoGameObject1: {fileID: 0}
+  pointTwoGameObject2: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -383,3 +568,6 @@ SceneRoots:
   - {fileID: 1164548463}
   - {fileID: 1408256435}
   - {fileID: 410344043}
+  - {fileID: 601631995}
+  - {fileID: 2084878090}
+  - {fileID: 1387187211}
