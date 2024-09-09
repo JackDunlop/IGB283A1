@@ -18,17 +18,19 @@ public class Objects : MonoBehaviour
     public GameObject firstDogGameObject1;
     public GameObject firstDogGameObject2;
 
+
+
     public Material pointOneMaterial;
     public GameObject pointOneGameObject1;
-
     public GameObject pointOneGameObject2;
     
+
     public Material pointTwoMaterial;
     public GameObject pointTwoGameObject1;
-
     public GameObject pointTwoGameObject2;
+ 
 
-    
+
     void CreateAndSetUpPointOne(GameObject gameObject,float initialX, float initialY)
     {
         IGB283Vector3[] pointOneVertices = new IGB283Vector3[]
@@ -186,13 +188,13 @@ public class Objects : MonoBehaviour
         }
 
     }
-
+   
     void SetInitialPosition(GameObject gameObject, float x, float y)
     {
         if (gameObject != null)
         {
-
-            gameObject.transform.position = new IGB283Vector3(x, y, 0);
+            Rigidbody gameObjectRB = gameObject.GetComponent<Rigidbody>();
+            gameObjectRB.MovePosition(new IGB283Vector3(x, y, 0));
         }
         else
         {
@@ -202,7 +204,8 @@ public class Objects : MonoBehaviour
     void CreateObjects(GameObject gameObject, Material material, IGB283Vector3[] vertices, int[] triangles)
     {
 
-
+        gameObject.AddComponent<Rigidbody>();
+        gameObject.GetComponent<Rigidbody>().useGravity = false;
         gameObject.AddComponent<MeshFilter>();
         gameObject.AddComponent<MeshRenderer>();
 
@@ -282,6 +285,7 @@ public class Objects : MonoBehaviour
         if (firstDogGameObject1 != null)
         {
             ObjectRotater(firstDogGameObject1);
+           
         }
         if (firstDogGameObject2 != null)
         {
