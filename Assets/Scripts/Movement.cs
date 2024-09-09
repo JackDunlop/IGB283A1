@@ -5,10 +5,6 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-
-
-
-
     private GameObject firstDogGameObject1;
 
     private GameObject pointOneGameObject1;
@@ -28,7 +24,7 @@ public class Movement : MonoBehaviour
     private IGB283Vector3 pointTwoPosition2;
 
     public float translationSpeed = 5f;
-    private float direction = 1f;
+    private float direction1 = 1f;
     private float direction2 = -1f;
 
     void Start()
@@ -55,31 +51,41 @@ public class Movement : MonoBehaviour
         pointOnePosition1 = pointOneGameObject1.transform.position;
         pointTwoPosition1 = pointTwoGameObject1.transform.position;
 
-
         pointOnePosition2 = pointOneGameObject2.transform.position;
         pointTwoPosition2 = pointTwoGameObject2.transform.position;
 
-        IGB283Vector3 targetPosition1 = (IGB283Vector3)(direction > 0 ? pointTwoPosition1 : pointOnePosition1);
-        IGB283Vector3 directionVector1 = (targetPosition1 - firstDogGameObject1.transform.position).normalized;
+        BounceObjects(pointOnePosition1, pointTwoPosition1, firstDogGameObject1, ref direction1);
+        BounceObjects(pointOnePosition2, pointTwoPosition2, firstDogGameObject2, ref direction2);
 
-        firstDogGameObject1.transform.position += directionVector1 * translationSpeed * Time.deltaTime;
+     
+    }
 
-        if (IGB283Vector3.Distance(firstDogGameObject1.transform.position, targetPosition1) < 0.5f)
+    void BounceObjects(IGB283Vector3 pointOne, IGB283Vector3 pointTwo, GameObject gameObject, ref float direction)
+    {
+        IGB283Vector3 targetPosition;
+        if (gameObject == firstDogGameObject1)
+        {
+            targetPosition = direction < 0 ? pointTwo : pointOne;
+        }
+        else
+        {
+            targetPosition = direction > 0 ? pointTwo : pointOne;
+        }
+
+        targetPosition = new IGB283Vector3(targetPosition.x + 10, targetPosition.y + 20, targetPosition.z);
+       
+        IGB283Vector3 currentPosition = gameObject.transform.position;
+        IGB283Vector3 directionVector = (targetPosition - currentPosition).normalized;
+
+        gameObject.transform.position += directionVector * translationSpeed * Time.deltaTime;
+
+        float distanceToTarget = IGB283Vector3.Distance(gameObject.transform.position, targetPosition);
+        if (distanceToTarget < 0.3f)
         {
             direction *= -1;
         }
-
-     
-        IGB283Vector3 targetPosition2 = (IGB283Vector3)(direction2 > 0 ? pointOnePosition2: pointTwoPosition2);
-        IGB283Vector3 directionVector2 = (targetPosition2 - firstDogGameObject2.transform.position).normalized;
-
-        firstDogGameObject2.transform.position += directionVector2 * translationSpeed * Time.deltaTime;
-
-        if (IGB283Vector3.Distance(firstDogGameObject2.transform.position, targetPosition2) < 1f)
-        {
-            direction2 *= -1;
-        }
     }
+
 
 
 
@@ -96,5 +102,3 @@ public class Movement : MonoBehaviour
         }
     }
 }
-
-
