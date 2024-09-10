@@ -160,5 +160,9 @@ public class IGB283Vector3
             return new IGB283Vector3(0, 1, 0);
         }
     }
-
+    public static IGB283Vector3 operator /(IGB283Vector3 a, float b)
+    {
+        return new IGB283Vector3(a.x / b, a.y / b, a.z / b);
+    }
+  
 }

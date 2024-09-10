@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class IGB283Transform : MonoBehaviour
 {
@@ -12,6 +13,31 @@ public class IGB283Transform : MonoBehaviour
     {
         return new IGB283Vector3(point.x + translation.x, point.y + translation.y, point.z + translation.z);
     }
+
+
+    public static void MoveObject(GameObject gameObject, IGB283Vector3 position)
+    {
+        MeshFilter meshFilter = gameObject.GetComponent<MeshFilter>();
+        Mesh gameObjectMesh = meshFilter.mesh;
+
+        IGB283Vector3[] vertices = gameObjectMesh.vertices.Select(v => (IGB283Vector3)v).ToArray();
+
+      
+        Matrix3x3 translationMatrix = Matrix3x3.Translate(position);
+
+     
+        for (int i = 0; i < vertices.Length; i++)
+        {
+            vertices[i] = translationMatrix.MultiplyPoint(vertices[i]);
+        }
+
+      
+        gameObjectMesh.vertices = vertices.Select(v => (Vector3)v).ToArray();
+        gameObjectMesh.RecalculateBounds();
+    }
+
+
+
 
     public static void RotateGameObject(GameObject gameObject, float speed)
     {
@@ -35,6 +61,8 @@ public class IGB283Transform : MonoBehaviour
         gameObjectMesh.vertices = vertices.Select(v => (Vector3)v).ToArray();
         gameObjectMesh.RecalculateBounds();
     }
+
+
 
 
 

@@ -300,7 +300,6 @@ GameObject:
   m_Component:
   - component: {fileID: 601631995}
   - component: {fileID: 601631996}
-  - component: {fileID: 601631997}
   - component: {fileID: 601631998}
   - component: {fileID: 601631999}
   m_Layer: 0
@@ -346,20 +345,6 @@ MonoBehaviour:
   pointTwoMaterial: {fileID: 0}
   pointTwoGameObject1: {fileID: 0}
   pointTwoGameObject2: {fileID: 0}
---- !u!114 &601631997
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 601631994}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3f3d4c146cb7b42428e519e0cc7da172, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  translationSpeed1: 100
-  translationSpeed2: 10
 --- !u!64 &601631998
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -382,33 +367,20 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
---- !u!54 &601631999
-Rigidbody:
+--- !u!114 &601631999
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 601631994}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f3d4c146cb7b42428e519e0cc7da172, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  translationSpeed1: 1
+  translationSpeed2: 10
 --- !u!1 &1164548461
 GameObject:
   m_ObjectHideFlags: 0
@@ -419,7 +391,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1164548463}
   - component: {fileID: 1164548462}
-  - component: {fileID: 1164548464}
+  - component: {fileID: 1164548465}
   m_Layer: 0
   m_Name: firstDog1
   m_TagString: Untagged
@@ -463,20 +435,28 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1164548464
-MonoBehaviour:
+--- !u!64 &1164548465
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1164548461}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3f3d4c146cb7b42428e519e0cc7da172, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  translationSpeed1: 100
-  translationSpeed2: 10
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 0}
 --- !u!1 &1387187210
 GameObject:
   m_ObjectHideFlags: 0
@@ -488,6 +468,7 @@ GameObject:
   - component: {fileID: 1387187211}
   - component: {fileID: 1387187212}
   - component: {fileID: 1387187213}
+  - component: {fileID: 1387187214}
   m_Layer: 0
   m_Name: pointTwo2
   m_TagString: Untagged
@@ -553,6 +534,20 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
+--- !u!114 &1387187214
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1387187210}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f3d4c146cb7b42428e519e0cc7da172, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  translationSpeed1: 1
+  translationSpeed2: 10
 --- !u!1 &1408256434
 GameObject:
   m_ObjectHideFlags: 0
@@ -710,9 +705,9 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 519420032}
-  - {fileID: 1164548463}
   - {fileID: 1408256435}
   - {fileID: 410344043}
-  - {fileID: 601631995}
   - {fileID: 2084878090}
   - {fileID: 1387187211}
+  - {fileID: 1164548463}
+  - {fileID: 601631995}
