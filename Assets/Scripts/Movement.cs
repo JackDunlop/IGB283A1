@@ -8,7 +8,7 @@ public class Movement : MonoBehaviour
 {
     private GameObject firstDogGameObject1;
 
-    
+
     private IGB283Vector3 pointOnePosition1;
     private IGB283Vector3 pointTwoPosition1;
 
@@ -93,30 +93,30 @@ public class Movement : MonoBehaviour
         float distanceToMove = speed * Time.deltaTime;
         IGB283Vector3 movementVector = directionVector * distanceToMove;
 
-     
+        IGB283Transform.RotateGameObject(gameObject, movementVector, speed);
         IGB283Transform.MoveObject(gameObject, movementVector);
 
         Color newColor = ColourBasedOnPosition(currentPosition, pointOne, pointTwo);
         gameObject.GetComponent<Renderer>().material.color = newColor;
 
         float distanceToTarget = IGB283Vector3.Distance(currentPosition, targetPosition);
-    
+
         //Debug.Log($"Target Position: {targetPosition}");
         //Debug.Log($"Current Position: {currentPosition}");
         //Debug.Log($"Distance to Target: {distanceToTarget}");
 
-      
+
         if (distanceToTarget <= 1)
         {
             direction *= -1;
-          //  Debug.Log($"Direction changed to: {direction}");
+            //  Debug.Log($"Direction changed to: {direction}");
         }
     }
 
     public IGB283Vector3 GetObjectCenter(GameObject gameObject)
     {
 
-        
+
         MeshFilter meshFilter = gameObject.GetComponent<MeshFilter>();
         Mesh gameObjectMesh = meshFilter.mesh;
 
@@ -137,4 +137,3 @@ public class Movement : MonoBehaviour
 
 
 }
-

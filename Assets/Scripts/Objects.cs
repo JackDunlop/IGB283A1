@@ -6,10 +6,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class GameObjectSpeed : MonoBehaviour
-{
-    public float rotationSpeed;
-}
+
 
 
 public class Objects : MonoBehaviour
@@ -18,7 +15,7 @@ public class Objects : MonoBehaviour
     public GameObject firstDogGameObject1;
     public GameObject firstDogGameObject2;
 
-    void CreateAndSetUpDogObject(GameObject gameObject, float rotationSpeed, float initialX, float initialY)
+    void CreateAndSetUpDogObject(GameObject gameObject)
     {
         IGB283Vector3[] firstDogVertices = new IGB283Vector3[] {
                 new IGB283Vector3(0,0,0),
@@ -102,8 +99,8 @@ public class Objects : MonoBehaviour
                 33,32,30,
                 30,32,29
             }, 0.8f, 0.3f, 0.3f);
-        GameObjectSpeed speedDog = gameObject.AddComponent<GameObjectSpeed>();
-        speedDog.rotationSpeed = rotationSpeed;
+      
+       
 
     }
 
@@ -113,11 +110,11 @@ public class Objects : MonoBehaviour
 
         if (firstDogGameObject1 != null)
         {
-            CreateAndSetUpDogObject(firstDogGameObject1, 500f, 0f, 0f);
+            CreateAndSetUpDogObject(firstDogGameObject1);
         }
         if (firstDogGameObject2 != null)
         {
-            CreateAndSetUpDogObject(firstDogGameObject2, 250f, 0f, 0f);
+            CreateAndSetUpDogObject(firstDogGameObject2);
         }
 
 
@@ -156,26 +153,9 @@ public class Objects : MonoBehaviour
     void Update()
     {
 
-        if (firstDogGameObject1 != null)
-        {
-            //ObjectRotater(firstDogGameObject1);
-
-        }
-        if (firstDogGameObject2 != null)
-        {
-            //  ObjectRotater(firstDogGameObject2);
-        }
-
+      
      
     }
 
-    void ObjectRotater(GameObject gameObject)
-    {
-        GameObjectSpeed speedComponent = gameObject.GetComponent<GameObjectSpeed>();
-        if (speedComponent != null)
-        {
-            IGB283Transform.RotateGameObject(gameObject, speedComponent.rotationSpeed * Time.deltaTime);
-        }
-    }
 }
 

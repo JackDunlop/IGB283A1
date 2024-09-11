@@ -22,16 +22,16 @@ public class IGB283Transform : MonoBehaviour
 
         IGB283Vector3[] vertices = gameObjectMesh.vertices.Select(v => (IGB283Vector3)v).ToArray();
 
-      
+
         Matrix3x3 translationMatrix = Matrix3x3.Translate(position);
 
-     
+
         for (int i = 0; i < vertices.Length; i++)
         {
             vertices[i] = translationMatrix.MultiplyPoint(vertices[i]);
         }
 
-      
+
         gameObjectMesh.vertices = vertices.Select(v => (Vector3)v).ToArray();
         gameObjectMesh.RecalculateBounds();
     }
@@ -39,7 +39,7 @@ public class IGB283Transform : MonoBehaviour
 
 
 
-    public static void RotateGameObject(GameObject gameObject, float speed)
+    public static void RotateGameObject(GameObject gameObject, IGB283Vector3 position, float speed)
     {
 
         MeshFilter meshFilter = gameObject.GetComponent<MeshFilter>();
@@ -50,11 +50,14 @@ public class IGB283Transform : MonoBehaviour
 
 
         Matrix3x3 rotationMatrix = Matrix3x3.Rotate(speed * Time.deltaTime);
+        Matrix3x3 translationMatrix = Matrix3x3.Translate(position);
+
+        Matrix3x3 combideMatrix = rotationMatrix * translationMatrix;
 
 
         for (int i = 0; i < vertices.Length; i++)
         {
-            vertices[i] = rotationMatrix.MultiplyPoint(vertices[i]);
+            vertices[i] = combideMatrix.MultiplyPoint(vertices[i]);
         }
 
 
@@ -66,21 +69,4 @@ public class IGB283Transform : MonoBehaviour
 
 
 
-    // Scaling
-    public static IGB283Vector3 IGBScale(IGB283Vector3 point, float scaleX, float scaleY)
-    {
-        return new IGB283Vector3(point.x * scaleX, point.y * scaleY, point.z);
-    }
-
-
-    public static IGB283Vector3 GetGameObjectPosition(GameObject gameObject)
-    {
-        return new IGB283Vector3(gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z);
-    }
-
-
-    public static void SetGameObjectPosition(GameObject gameObject, IGB283Vector3 position)
-    {
-        gameObject.transform.position = new IGB283Vector3(position.x, position.y, position.z);
-    }
 }
