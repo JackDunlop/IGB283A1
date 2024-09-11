@@ -8,7 +8,7 @@ public class Movement : MonoBehaviour
 {
     private GameObject firstDogGameObject1;
 
-
+    
     private IGB283Vector3 pointOnePosition1;
     private IGB283Vector3 pointTwoPosition1;
 
@@ -17,6 +17,13 @@ public class Movement : MonoBehaviour
 
     private IGB283Vector3 pointOnePosition2;
     private IGB283Vector3 pointTwoPosition2;
+
+    private GameObject pointOne1GameObject;
+    private GameObject pointOne2GameObject;
+    private GameObject pointTwo1GameObject;
+    private GameObject pointTwo2GameObject;
+
+
 
     public float translationSpeed1 = 1f;
     public float translationSpeed2 = 10f;
@@ -28,10 +35,27 @@ public class Movement : MonoBehaviour
     {
         firstDogGameObject1 = GameObject.Find("firstDog1");
         firstDogGameObject2 = GameObject.Find("firstDog2");
+        pointOne1GameObject = GameObject.Find("pointOne1");
+        pointOne2GameObject = GameObject.Find("pointOne2");
+        pointTwo1GameObject = GameObject.Find("pointTwo1");
+        pointTwo2GameObject = GameObject.Find("pointTwo2");
     }
 
     void Update()
     {
+
+        BoxCollider2D pointOne1BoxCollider2D = pointOne1GameObject.GetComponent<BoxCollider2D>();
+        IGB283Vector3 pointOne1PostionVector = pointOne1BoxCollider2D.bounds.center;
+
+        BoxCollider2D pointOne2BoxCollider2D = pointOne2GameObject.GetComponent<BoxCollider2D>();
+        IGB283Vector3 pointOne2PostionVector = pointOne2BoxCollider2D.bounds.center;
+
+        BoxCollider2D pointTwo1BoxCollider2D = pointTwo1GameObject.GetComponent<BoxCollider2D>();
+        IGB283Vector3 pointTwo1PostionVector = pointTwo1BoxCollider2D.bounds.center;
+
+        BoxCollider2D pointTwo2BoxCollider2D = pointTwo2GameObject.GetComponent<BoxCollider2D>();
+        IGB283Vector3 pointTwo2PostionVector = pointTwo2BoxCollider2D.bounds.center;
+
 
         IGB283Vector3 positionPointOne1 = new IGB283Vector3(67.5f, 22.5f, 0);
 
@@ -43,8 +67,8 @@ public class Movement : MonoBehaviour
 
 
 
-        BounceObjects(positionPointOne1, positionPointTwo1, firstDogGameObject1, ref direction1, translationSpeed1);
-        BounceObjects(positionPointOne2, positionPointTwo2, firstDogGameObject2, ref direction2, translationSpeed2);
+        BounceObjects(pointOne1PostionVector, pointTwo1PostionVector, firstDogGameObject1, ref direction1, translationSpeed1);
+        BounceObjects(pointOne2PostionVector, pointTwo2PostionVector, firstDogGameObject2, ref direction2, translationSpeed2);
 
 
     }
@@ -62,7 +86,7 @@ public class Movement : MonoBehaviour
         IGB283Vector3 currentPosition = GetObjectCenter(gameObject);
 
         IGB283Vector3 targetPosition = direction < 0 ? pointTwo : pointOne;
-        Debug.Log(targetPosition);
+        //Debug.Log(targetPosition);
 
         IGB283Vector3 directionVector = (targetPosition - currentPosition).normalized;
 
@@ -77,15 +101,15 @@ public class Movement : MonoBehaviour
 
         float distanceToTarget = IGB283Vector3.Distance(currentPosition, targetPosition);
     
-        Debug.Log($"Target Position: {targetPosition}");
-        Debug.Log($"Current Position: {currentPosition}");
-        Debug.Log($"Distance to Target: {distanceToTarget}");
+        //Debug.Log($"Target Position: {targetPosition}");
+        //Debug.Log($"Current Position: {currentPosition}");
+        //Debug.Log($"Distance to Target: {distanceToTarget}");
 
       
         if (distanceToTarget <= 1)
         {
             direction *= -1;
-            Debug.Log($"Direction changed to: {direction}");
+          //  Debug.Log($"Direction changed to: {direction}");
         }
     }
 

@@ -179,21 +179,3 @@ public class Objects : MonoBehaviour
     }
 }
 
-// if (pointOneGameObject2 != null)
-// {
-//     IGB283Vector3[] pointOneVertices = new IGB283Vector3[]
-//{
-//     new IGB283Vector3(70,20,0),
-//     new IGB283Vector3(65,20,0),
-//     new IGB283Vector3(70,25,0),
-//     new IGB283Vector3(65,25,0),
-//};
-
-//     CreateAndSetUpPointOne(pointOneGameObject2, pointOneVertices, new int[] { 3, 2, 1, 2, 0, 1 });
-
-// }
-
-//if (pointTwoGameObject2 != null)
-//{
-//    CreateAndSetUpPointTwo(pointTwoGameObject2, 70f, -20f);
-//}
