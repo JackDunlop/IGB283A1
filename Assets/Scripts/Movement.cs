@@ -62,17 +62,6 @@ public class Movement : MonoBehaviour
         BoxCollider2D pointTwo2BoxCollider2D = pointTwo2GameObject.GetComponent<BoxCollider2D>();
         IGB283Vector3 pointTwo2PostionVector = pointTwo2BoxCollider2D.bounds.center;
 
-
-        IGB283Vector3 positionPointOne1 = new IGB283Vector3(67.5f, 22.5f, 0);
-
-        IGB283Vector3 positionPointTwo1 = new IGB283Vector3(-67.5f, 22.5f, 0);
-
-        IGB283Vector3 positionPointOne2 = new IGB283Vector3(67.5f, -22.5f, 0);
-
-        IGB283Vector3 positionPointTwo2 = new IGB283Vector3(-67.5f, -22.5f, 0);
-
-
-
         BounceObjects(pointOne1PostionVector, pointTwo1PostionVector, firstDogGameObject1, ref direction1, translationSpeed1, rotation1Speed);
         BounceObjects(pointOne2PostionVector, pointTwo2PostionVector, firstDogGameObject2, ref direction2, translationSpeed2, rotation2Speed);
 
