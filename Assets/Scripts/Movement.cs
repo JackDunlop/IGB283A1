@@ -26,6 +26,7 @@ public class Movement : MonoBehaviour
     private GameObject pointTwo2GameObject;
 
 
+
     public float translationSpeed1 = 100f;
     public float translationSpeed2 = 5f;
 
@@ -44,7 +45,13 @@ public class Movement : MonoBehaviour
             firstDogGameObject1 = GameObject.Find("firstDog1");
             pointOne1GameObject = GameObject.Find("pointOne1");
             pointTwo1GameObject = GameObject.Find("pointTwo1");
+       
+
             orginalVerticesFirstDogGameObject1 = GetOriginalVertices(firstDogGameObject1);
+            IGB283Transform.MoveObject(pointOne1GameObject, new IGB283Vector3(67.5f, 22.5f, 0f));
+            IGB283Transform.MoveObject(pointTwo1GameObject, new IGB283Vector3(-67.5f, 22.5f, 0f));
+          
+            
         }
         else
         {
@@ -52,11 +59,13 @@ public class Movement : MonoBehaviour
             pointOne2GameObject = GameObject.Find("pointOne2");
             pointTwo2GameObject = GameObject.Find("pointTwo2");
             orginalVerticesFirstDogGameObject2 = GetOriginalVertices(firstDogGameObject2);
+            IGB283Transform.MoveObject(pointOne2GameObject, new IGB283Vector3(67.5f, -22.5f, 0f));
+            IGB283Transform.MoveObject(pointTwo2GameObject, new IGB283Vector3(-67.5f, -22.5f, 0f));
         }
-       
 
 
-        
+
+
 
     }
 
@@ -75,23 +84,17 @@ public class Movement : MonoBehaviour
 
         if (gameObject.name == "firstDog1")
         {
-            BoxCollider2D pointOne1BoxCollider2D = pointOne1GameObject.GetComponent<BoxCollider2D>();
-            IGB283Vector3 pointOne1PostionVector = pointOne1BoxCollider2D.bounds.center;
+       
 
-            BoxCollider2D pointTwo1BoxCollider2D = pointTwo1GameObject.GetComponent<BoxCollider2D>();
-            IGB283Vector3 pointTwo1PostionVector = pointTwo1BoxCollider2D.bounds.center;
-
-            BounceObjects(pointOne1PostionVector, pointTwo1PostionVector, firstDogGameObject1, ref direction1, translationSpeed1, rotation1Speed, ref orginalVerticesFirstDogGameObject1);
+            
+            BounceObjects(GetObjectCenter(pointOne1GameObject), GetObjectCenter(pointTwo1GameObject), firstDogGameObject1, ref direction1, translationSpeed1, rotation1Speed, ref orginalVerticesFirstDogGameObject1);
+          
         }
         else
         {
-            BoxCollider2D pointOne2BoxCollider2D = pointOne2GameObject.GetComponent<BoxCollider2D>();
-            IGB283Vector3 pointOne2PostionVector = pointOne2BoxCollider2D.bounds.center;
 
-            BoxCollider2D pointTwo2BoxCollider2D = pointTwo2GameObject.GetComponent<BoxCollider2D>();
-            IGB283Vector3 pointTwo2PostionVector = pointTwo2BoxCollider2D.bounds.center;
 
-            BounceObjects(pointOne2PostionVector, pointTwo2PostionVector, firstDogGameObject2, ref direction2, translationSpeed2, rotation2Speed, ref orginalVerticesFirstDogGameObject2);
+            BounceObjects(GetObjectCenter(pointOne2GameObject), GetObjectCenter(pointTwo2GameObject), firstDogGameObject2, ref direction2, translationSpeed2, rotation2Speed, ref orginalVerticesFirstDogGameObject2);
         }
 
 

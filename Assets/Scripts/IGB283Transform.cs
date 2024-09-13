@@ -8,13 +8,13 @@ public class IGB283Transform : MonoBehaviour
 {
 
 
-
+    
     public static void MoveObject(GameObject gameObject, IGB283Vector3 position)
     {
         MeshFilter meshFilter = gameObject.GetComponent<MeshFilter>();
         Mesh gameObjectMesh = meshFilter.mesh;
 
-        IGB283Vector3[] vertices = gameObjectMesh.vertices.Select(v => (IGB283Vector3)v).ToArray();
+        IGB283Vector3[] vertices = gameObjectMesh.vertices.Select(v => (IGB283Vector3)v).ToArray(); 
 
         IGB283Vector3 objectCenter = Movement.GetObjectCenter(gameObject);
         Matrix3x3 translationMatrix = Matrix3x3.Translate(position);
@@ -75,7 +75,7 @@ public class IGB283Transform : MonoBehaviour
     }
 
 
-
+    // Was used then switched
     public static IGB283Vector3[] ScaleValue(GameObject gameObject, IGB283Vector3 scaleVector)
     {
         MeshFilter meshFilter = gameObject.GetComponent<MeshFilter>();
@@ -100,7 +100,7 @@ public class IGB283Transform : MonoBehaviour
     }
 
 
-
+    // Was used then switched
     public static void Rotate(GameObject gameObject, float rotationSpeed)
     {
         MeshFilter meshFilter = gameObject.GetComponent<MeshFilter>();

@@ -15,6 +15,29 @@ public class Objects : MonoBehaviour
     public GameObject firstDogGameObject1;
     public GameObject firstDogGameObject2;
 
+    public Material points;
+    public GameObject pointOne1GameObjects;
+    public GameObject pointOne2GameObjects;
+    public GameObject pointTwo1GameObjects;
+    public GameObject pointTwo2GameObjects;
+
+
+
+    void CreateAndSetUpPointOne(GameObject gameObject)
+    {
+        IGB283Vector3[] pointOneVertices = new IGB283Vector3[]
+        {
+            new IGB283Vector3(10,20,0),
+            new IGB283Vector3(5,20,0),
+            new IGB283Vector3(10,25,0),
+            new IGB283Vector3(5,25,0),
+        };
+
+
+        CreateObjects(gameObject, points, pointOneVertices, new int[] { 3, 2, 1, 2, 0, 1 }, 0.8f, 0.3f, 0.3f);
+        
+    }
+
     void CreateAndSetUpDogObject(GameObject gameObject)
     {
         IGB283Vector3[] firstDogVertices = new IGB283Vector3[] {
@@ -115,6 +138,22 @@ public class Objects : MonoBehaviour
         if (firstDogGameObject2 != null)
         {
             CreateAndSetUpDogObject(firstDogGameObject2);
+        }
+        if (pointOne1GameObjects != null)
+        {
+            CreateAndSetUpPointOne(pointOne1GameObjects);
+        }
+        if (pointTwo1GameObjects != null)
+        {
+            CreateAndSetUpPointOne(pointTwo1GameObjects);
+        }
+        if (pointOne2GameObjects != null)
+        {
+            CreateAndSetUpPointOne(pointOne2GameObjects);
+        }
+        if (pointTwo2GameObjects != null)
+        {
+            CreateAndSetUpPointOne(pointTwo2GameObjects);
         }
 
 
