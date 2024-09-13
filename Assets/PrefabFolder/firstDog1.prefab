@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 388657439878675841}
   - component: {fileID: 5761665713244760076}
-  - component: {fileID: 3136919028384127033}
   m_Layer: 0
   m_Name: firstDog1
   m_TagString: Untagged
@@ -48,19 +47,3 @@ MonoBehaviour:
   firstDogMaterial: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   firstDogGameObject1: {fileID: 2666451945028106205}
   firstDogGameObject2: {fileID: 0}
---- !u!114 &3136919028384127033
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2666451945028106205}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3f3d4c146cb7b42428e519e0cc7da172, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  translationSpeed1: 1
-  translationSpeed2: 5
-  rotation1Speed: 0.5
-  rotation2Speed: 1

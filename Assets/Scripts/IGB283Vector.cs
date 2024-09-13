@@ -164,5 +164,11 @@ public class IGB283Vector3
     {
         return new IGB283Vector3(a.x / b, a.y / b, a.z / b);
     }
-  
+
+
+    public static IGB283Vector3 Lerp(IGB283Vector3 a, IGB283Vector3 b, float t)
+    {
+        t = Mathf.Clamp01(t);
+        return new IGB283Vector3(a.x + (b.x - a.x) * t, a.y + (b.y - a.y) * t, a.z + (b.z - a.z) * t);
+    }
 }
