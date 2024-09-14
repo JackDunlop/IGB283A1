@@ -128,9 +128,8 @@ public class Objects : MonoBehaviour
     }
 
 
-    void Start()
+    private void Awake()
     {
-
         if (firstDogGameObject1 != null)
         {
             CreateAndSetUpDogObject(firstDogGameObject1);
@@ -155,6 +154,12 @@ public class Objects : MonoBehaviour
         {
             CreateAndSetUpPointOne(pointTwo2GameObjects);
         }
+    }
+
+    void Start()
+    {
+
+      
 
 
     }

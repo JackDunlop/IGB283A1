@@ -111,28 +111,28 @@ public class Movement : MonoBehaviour
     
     } 
 
-   public IGB283Vector3 ScaleBasedOnPosition(IGB283Vector3 pointOne, IGB283Vector3 pointTwo, GameObject gameObject)
-{
-    IGB283Vector3 objectCenter = GetObjectCenter(gameObject);
+       public IGB283Vector3 ScaleBasedOnPosition(IGB283Vector3 pointOne, IGB283Vector3 pointTwo, GameObject gameObject)
+    {
+        IGB283Vector3 objectCenter = GetObjectCenter(gameObject);
     
-    float minX = Mathf.Min(pointOne.x, pointTwo.x);
-    float maxX = Mathf.Max(pointOne.x, pointTwo.x);
+        float minX = Mathf.Min(pointOne.x, pointTwo.x);
+        float maxX = Mathf.Max(pointOne.x, pointTwo.x);
 
 
-    float midpoint = (minX + maxX) / 2f;
+        float midpoint = (minX + maxX) / 2f;
 
-    float t;
-    if (objectCenter.x <= midpoint)
-    {
-        t = Mathf.InverseLerp(minX, midpoint, objectCenter.x);
-        return IGB283Vector3.Lerp(new IGB283Vector3(0.5f, 0.5f, 0.5f), new IGB283Vector3(1f, 1f, 1f), t);
+        float t;
+        if (objectCenter.x <= midpoint)
+        {
+            t = Mathf.InverseLerp(minX, midpoint, objectCenter.x);
+            return IGB283Vector3.Lerp(new IGB283Vector3(0.5f, 0.5f, 0.5f), new IGB283Vector3(1f, 1f, 1f), t);
+        }
+        else
+        {
+            t = Mathf.InverseLerp(midpoint, maxX, objectCenter.x);
+            return IGB283Vector3.Lerp(new IGB283Vector3(1f, 1f, 1f), new IGB283Vector3(2f, 2f, 2f), t);
+        }
     }
-    else
-    {
-        t = Mathf.InverseLerp(midpoint, maxX, objectCenter.x);
-        return IGB283Vector3.Lerp(new IGB283Vector3(1f, 1f, 1f), new IGB283Vector3(2f, 2f, 2f), t);
-    }
-}
 
 
 
