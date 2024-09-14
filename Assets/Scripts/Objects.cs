@@ -128,7 +128,7 @@ public class Objects : MonoBehaviour
     }
 
 
-    private void Awake()
+    void Awake()
     {
         if (firstDogGameObject1 != null)
         {

@@ -8,7 +8,6 @@ public class IGB283Transform : MonoBehaviour
 {
 
 
-    
     public static void MoveObject(GameObject gameObject, IGB283Vector3 position)
     {
         MeshFilter meshFilter = gameObject.GetComponent<MeshFilter>();
@@ -16,7 +15,6 @@ public class IGB283Transform : MonoBehaviour
 
         IGB283Vector3[] vertices = gameObjectMesh.vertices.Select(v => (IGB283Vector3)v).ToArray(); 
 
-        IGB283Vector3 objectCenter = Movement.GetObjectCenter(gameObject);
         Matrix3x3 translationMatrix = Matrix3x3.Translate(position);
 
         for (int i = 0; i < vertices.Length; i++)

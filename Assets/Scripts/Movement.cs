@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 
 public class Movement : MonoBehaviour
@@ -25,7 +26,10 @@ public class Movement : MonoBehaviour
     private GameObject pointTwo1GameObject;
     private GameObject pointTwo2GameObject;
 
-
+    private MouseControl mouseControlPointOne1;
+    private MouseControl mouseControlPointOne2;
+    private MouseControl mouseControlPointTwo1;
+    private MouseControl mouseControlPointTwo2;
 
     public float translationSpeed1 = 100f;
     public float translationSpeed2 = 5f;
@@ -37,6 +41,8 @@ public class Movement : MonoBehaviour
     private float direction2 = -1f;
 
 
+
+
     void Start()
     {
 
@@ -45,13 +51,12 @@ public class Movement : MonoBehaviour
             firstDogGameObject1 = GameObject.Find("firstDog1");
             pointOne1GameObject = GameObject.Find("pointOne1");
             pointTwo1GameObject = GameObject.Find("pointTwo1");
-       
-
             orginalVerticesFirstDogGameObject1 = GetOriginalVertices(firstDogGameObject1);
             IGB283Transform.MoveObject(pointOne1GameObject, new IGB283Vector3(67.5f, 22.5f, 0f));
             IGB283Transform.MoveObject(pointTwo1GameObject, new IGB283Vector3(-67.5f, 22.5f, 0f));
-          
-            
+            mouseControlPointOne1 = new MouseControl(GetObjectCenter(pointOne1GameObject));
+            mouseControlPointTwo1 = new MouseControl(GetObjectCenter(pointTwo1GameObject));
+
         }
         else
         {
@@ -61,6 +66,8 @@ public class Movement : MonoBehaviour
             orginalVerticesFirstDogGameObject2 = GetOriginalVertices(firstDogGameObject2);
             IGB283Transform.MoveObject(pointOne2GameObject, new IGB283Vector3(67.5f, -22.5f, 0f));
             IGB283Transform.MoveObject(pointTwo2GameObject, new IGB283Vector3(-67.5f, -22.5f, 0f));
+            mouseControlPointOne2 = new MouseControl(GetObjectCenter(pointOne2GameObject));
+            mouseControlPointTwo2 = new MouseControl(GetObjectCenter(pointTwo2GameObject));
         }
 
 
@@ -76,39 +83,45 @@ public class Movement : MonoBehaviour
         IGB283Vector3[] vertices = gameObjectMesh.vertices.Select(v => (IGB283Vector3)v).ToArray();
         return vertices; 
     }
+    private void pointMovement(GameObject gameObject, MouseControl mouseControl)
+    {
+        mouseControl.MouseClickAction();
 
+        (IGB283Vector3 mousePos, bool isMoving) = mouseControl.GetModifiedValues();
+        IGB283Vector3 gameObjectsCurrentPosition = GetObjectCenter(gameObject);
+
+        if (isMoving && mousePos != null)
+        {
+
+            IGB283Vector3 newYPosition = new IGB283Vector3(gameObjectsCurrentPosition.x, mousePos.y, 0);
+
+            IGB283Transform.MoveObject(gameObject, newYPosition - GetObjectCenter(gameObject));
+            mouseControl.UpdateGameObjectPosition(GetObjectCenter(gameObject));
+        }
+    }
 
     void Update()
     {
 
-
-        if (gameObject.name == "firstDog1")
+        switch (gameObject.name)
         {
+            case "firstDog1":
+
+                pointMovement(pointOne1GameObject, mouseControlPointOne1);
+                pointMovement(pointTwo1GameObject, mouseControlPointTwo1);
+
+                BounceObjects(GetObjectCenter(pointOne1GameObject), GetObjectCenter(pointTwo1GameObject), firstDogGameObject1, ref direction1, translationSpeed1, rotation1Speed, ref orginalVerticesFirstDogGameObject1);
+                break;
+            case "firstDog2":
+
+                pointMovement(pointOne2GameObject, mouseControlPointOne2);
+                pointMovement(pointTwo2GameObject, mouseControlPointTwo2);
+                BounceObjects(GetObjectCenter(pointOne2GameObject), GetObjectCenter(pointTwo2GameObject), firstDogGameObject2, ref direction2, translationSpeed2, rotation2Speed, ref orginalVerticesFirstDogGameObject2);
+                break;
+        }
+
        
 
-            
-            BounceObjects(GetObjectCenter(pointOne1GameObject), GetObjectCenter(pointTwo1GameObject), firstDogGameObject1, ref direction1, translationSpeed1, rotation1Speed, ref orginalVerticesFirstDogGameObject1);
-          
-        }
-        else
-        {
-
-
-            BounceObjects(GetObjectCenter(pointOne2GameObject), GetObjectCenter(pointTwo2GameObject), firstDogGameObject2, ref direction2, translationSpeed2, rotation2Speed, ref orginalVerticesFirstDogGameObject2);
-        }
-
-
-     
-
-      
-
-      
-
-  
-
-        
-        
-    
     } 
 
        public IGB283Vector3 ScaleBasedOnPosition(IGB283Vector3 pointOne, IGB283Vector3 pointTwo, GameObject gameObject)
