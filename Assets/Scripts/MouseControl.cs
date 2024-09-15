@@ -1,7 +1,9 @@
 using UnityEngine;
 
-public class MouseControl : MonoBehaviour
+public class MouseControl  
 {
+
+
     private bool isMoving = false;
     public bool IsMoving
     {
@@ -28,7 +30,6 @@ public class MouseControl : MonoBehaviour
         {
             MouseOverAction();
         }
-     
         else if (Input.GetMouseButtonUp(0))
         {
             IsMoving = false;
@@ -39,7 +40,7 @@ public class MouseControl : MonoBehaviour
     {
         UpdateMousePosition();
         float distance = IGB283Vector3.Distance(mousePosition, gameObjectPosition);
-        if (distance <= 4)
+        if (distance <= 8)
         {
             IsMoving = true;
         }
